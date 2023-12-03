@@ -624,7 +624,7 @@ $RECYCLE.BIN/
 *.lnk
 
 # Project specific settings
-launchSettings.json
+Properties/launchSettings.json
 appsettings.Development.json
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,rider,csharp,aspnetcore
