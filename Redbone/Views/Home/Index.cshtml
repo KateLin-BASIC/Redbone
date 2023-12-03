@@ -1,0 +1,161 @@
+﻿@using HtmlAgilityPack
+@using System.Text
+
+@model HomeData;
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+@functions
+{
+    string GetTextFromHtmlString(string html)
+    {
+        var document = new HtmlDocument();
+        document.LoadHtml(html);
+        
+        var builder = new StringBuilder();
+
+        foreach(var node in document.DocumentNode.SelectNodes("//text()"))
+            builder.Append(node.InnerText);
+
+        return builder.ToString().Replace("&nbsp;", string.Empty);
+    }
+
+    string SkipString(string content)
+    {
+        string shortenContent;
+
+        if (content.Length > 200)
+            shortenContent = content[..200] + "...";
+        else
+            shortenContent = content;
+
+        return shortenContent;
+    }
+}
+
+<section id="section-main" data-aos="fade-down">
+    <img src="~/assets/img/avatar.webp" alt="Avatar"/>
+
+    <hgroup>
+        <h1>Kate Lin</h1>
+        <h3 id="app"></h3>
+    </hgroup>
+
+    <a href="#section-projects" role="button" class="outline">더 알아보기</a>
+</section>
+
+<section id="section-projects">
+    <hgroup>
+        <h2 data-aos="fade-in">프로젝트들 · · ·</h2>
+        <h3 data-aos="fade-in">제가 만든 프로젝트들을 모아두었습니다.</h3>
+    </hgroup>
+    
+    <div class="grid">
+        @if (Model.Repositories == null)
+        {
+            <p>등록된 프로젝트가 없습니다.</p>
+        }
+        else
+        {
+            foreach (var item in Model.Repositories)
+            {
+                <article data-aos="fade-in">
+                    <hgroup>
+                        <h1>
+                            <a href="@item.HtmlUrl">@item.Name</a>
+                        </h1>
+                        
+                        <h2>
+                            @(string.IsNullOrWhiteSpace(item.Description) ? "설명이 존재하지 않습니다." : SkipString(item.Description))
+                        </h2>
+                    </hgroup>
+                </article>
+            }
+        }
+    </div>
+</section>
+
+<section id="section-skills">
+    <hgroup>
+        <h2 data-aos="fade-in">프로그래밍 스킬 · · ·</h2>
+        <h3 data-aos="fade-in">저의 프로그래밍 실력입니다.</h3>
+    </hgroup>
+
+    <article data-aos="fade-in">
+        <details>
+            <summary>C#</summary>
+            <p>마이크로소프트의 VB.Net 업데이트 중단 소식을 듣고 배우기 시작했습니다. 제가 가장 좋아하는 프로그래밍 언어이기도 합니다.</p>
+
+            <p>실력</p>
+            <progress value="70" max="100"></progress>
+        </details>
+
+        <details>
+            <summary>Visual Basic, VB.Net, B4X</summary>
+            <p>스크래치 같은 블록 코딩에서 벗어나 처음으로 사용해본 프로그래밍 언어입니다. 더 이상 자주 사용하지는 않지만 저에게 있어서는 의미가 깊은 언어입니다.</p>
+
+            <p>실력</p>
+            <progress value="60" max="100"></progress>
+        </details>
+
+        <details>
+            <summary>Pharo</summary>
+            <p>가장 최근에 배우기 시작한 언어입니다. 객체 지향 언어에 대해 제 시점을 바꾸게 해준 계기이기도 합니다.</p>
+
+            <p>실력</p>
+            <progress value="30" max="100"></progress>
+        </details>
+    </article>
+</section>
+
+<section id="section-posts">
+    <hgroup>
+        <h2 data-aos="fade-in">최근 글 · · ·</h2>
+        <h3 data-aos="fade-in">제가 개발을 하며 얻은 지식들을 올려둔 공간입니다.</h3>
+    </hgroup>
+    
+    @if (!Model.Posts.Any())
+    {
+        <p data-aos="fade-in">등록된 글이 없습니다.</p>
+    }
+    else
+    {
+        @foreach (var item in Model.Posts)
+        {
+            <article data-aos="fade-in">
+                <hgroup>
+                    <h2><a href="/@item.Id">@item.Title</a></h2>
+                    <h3>@SkipString(GetTextFromHtmlString(item.Content))</h3>
+                </hgroup>
+
+                <hr/>
+
+                <small>@item.Date.ToString("yyyy-MM-dd HH:mm")</small>
+            </article>
+        }
+    }
+</section>
+
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/home.css">
+}
+
+@section Scripts {
+    @if (DateTime.Now.Month is 12 or 1)
+    {
+        <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
+        
+        <script>
+            let sf = new Snowflakes({
+                color: "#ffffff",
+                count: 30
+            });
+        </script>
+    }
+        
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="~/assets/js/home.js"></script>
+}

@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>정말 이 글을 삭제할까요?</h1>
+
+<div>
+    <a href="/panel/delete/@ViewBag.Id?confirm=true" role="button">예, 이 글을 삭제하겠습니다.</a>
+    <a href="/@ViewBag.Id" role="button" class="secondary outline">아니오, 글을 삭제하지 않겠습니다.</a>
+</div>

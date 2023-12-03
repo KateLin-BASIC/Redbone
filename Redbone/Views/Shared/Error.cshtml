@@ -1,0 +1,19 @@
+﻿@model ErrorViewModel
+
+@{
+    ViewData["Title"] = "문제가 발생했습니다.";
+}
+
+<hgroup>
+    <h1>문제가 발생했습니다.</h1>
+    <h3>해당 페이지를 표시할 수 없습니다.</h3>
+</hgroup>
+
+@if (Model.ShowRequestId)
+{
+    <p>
+        <strong>요청 ID:</strong> <code>@Model.RequestId</code>
+    </p>
+}
+
+<a href="/">홈으로 돌아가기</a>

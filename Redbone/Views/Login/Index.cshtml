@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<hgroup data-aos="fade-in">
+    <h2>로그인</h2>
+    <h3>관리자 패널에 접속하시려면 로그인하십시오.</h3>
+</hgroup>
+
+<article>
+    @using (Html.BeginForm("Index", "Login", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        
+        <label data-aos="fade-in">
+            아이디
+            <input type="text" name="Name" placeholder="아이디" autocomplete="off" required>
+        </label>
+        
+        <label data-aos="fade-in">
+            비밀번호
+            <input type="password" name="Password" placeholder="비밀번호" required>
+        </label>
+        
+        <br/>
+        
+        <input type="submit" value="로그인" data-aos="fade-in"/>           
+    }
+</article>
+
+@{
+    if (!string.IsNullOrWhiteSpace(ViewBag.Message))
+    {
+        <script>
+            swal({
+                title: "오류",
+                text: "@Html.Raw(ViewBag.Message)",
+                icon: "error",
+                buttons: {
+                  cancel: "확인"
+                }
+            });
+        </script>
+    }
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/login.css">
+}
+
+@section PreloadScripts {
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+}

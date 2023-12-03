@@ -1,0 +1,41 @@
+﻿@model Redbone.Models.Post;
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<hgroup data-aos="fade-in">
+    <h1>@Model.Title</h1>
+    <small>@Model.Date.ToString("yyyy-MM-dd HH:mm") · @Model.Views</small> 
+    
+    @if (Context.Session.GetString("_isAuthed") == "true")
+    {
+        <div>
+            <a href="/panel/delete/@Model.Id"><i class="bi bi-trash"></i></a>
+            <a href="/panel/edit/@Model.Id"><i class="bi bi-pen"></i></a>
+        </div>
+    }
+</hgroup>
+
+<hr/>
+<br/>
+
+<section data-aos="fade-in">
+    @Html.Raw(Model.Content)
+</section>
+
+<hr/>
+<br/>
+
+<section>
+    <h3 data-aos="fade-in">댓글</h3>
+    <div id="disqus_thread" data-aos="fade-in"></div>
+</section>
+
+@section Styles {
+    <link rel="stylesheet" href="~/assets/css/post.css">
+}
+
+@section Scripts {
+    <script src="~/assets/js/post.js"></script>
+}

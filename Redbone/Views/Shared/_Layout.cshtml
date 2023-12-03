@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+    <head>
+        <!-- Meta Tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta property="theme-color" content="#A5CC82">
+        <meta property="og:description" content="학생 개발자 Kate Lin의 웹 사이트입니다.">
+        <meta property="og:title" content="Kate Lin">
+        <meta name="description" content="학생 개발자 Kate Lin의 웹 사이트입니다.">
+
+        <!-- Title -->
+        <title>Kate Lin - @ViewData["Title"]</title>
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="~/assets/css/main.css">
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+        <link rel="stylesheet" href="https://unpkg.com/@@picocss/pico@1.5.10/css/pico.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css">
+        @await RenderSectionAsync("Styles", required: false)
+
+        <!-- Preload Scripts -->
+        @await RenderSectionAsync("PreloadScripts", required: false)
+    </head>
+
+    <body>
+        <nav class="container-fluid">
+            <ul>
+                <li><a href="/">Kate Lin의 <kbd>포트폴리오</kbd></a></li>
+            </ul>
+                    
+            <ul>
+                <li><a href="/recent"><i class="bi bi-sticky-fill"></i> 모든 글</a></li>
+
+                @{
+                    if (Context.Session.GetString("_isAuthed") != "true")
+                    {
+                        <li><a href="/login"><i class="bi bi-box-arrow-in-right"></i> 로그인</a></li>
+                    }
+                    else
+                    {
+                        <li>
+                            <details role="list" dir="rtl">
+                                <summary aria-haspopup="listbox" role="link"><i class="bi bi-person-fill"></i> 관리자</summary>
+                                <ul role="listbox">
+                                    <li><a href="/panel">관리자 패널</a></li>
+                                    <li><a href="/panel/write">글 쓰기</a></li>
+                                    <li><a href="/image">이미지 관리</a></li>
+                                    <li><a href="/panel?logout=true&lastUrl=@Html.Encode(Context.Request.Path)">로그아웃</a></li>
+                                </ul>
+                            </details>
+                        </li>
+                    }
+                }
+            </ul>
+        </nav>
+
+        <main class="container">
+            @RenderBody()
+        </main>
+
+        <footer class="container" data-aos="fade-in">
+            <hgroup>
+                <h5>Kate Lin © @DateTime.Now.Year</h5>
+                <h6>Made with <a href="https://picocss.com">Pico.css</a> -- Minimal CSS Framework for semantic HTML</h6>
+            </hgroup>
+                    
+            <a href="https://github.com/KateLin-BASIC" target="_blank"><i class="bi bi-github"></i></a>
+            <a href="mailto:admin@katelin.xyz" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+        </footer>
+    </body>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="~/assets/js/main.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</html>

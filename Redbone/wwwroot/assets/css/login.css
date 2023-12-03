@@ -1,0 +1,7 @@
+﻿.swal-text {
+    text-align: center;
+}
+
+.swal-button:focus {
+    box-shadow: none;
+}

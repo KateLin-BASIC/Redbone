@@ -1,0 +1,16 @@
+﻿body main.container a.secondary {
+    width: 100%;
+}
+
+div.aos-init:nth-child(3) > article:nth-child(2) > p {
+    margin-bottom: 0;
+    font-weight: lighter;
+}
+
+.swal-text {
+    text-align: center;
+}
+
+.swal-button:focus {
+    box-shadow: none;
+}
