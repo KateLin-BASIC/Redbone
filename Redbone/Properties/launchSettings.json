@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "Redbone": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:7247;http://localhost:5042",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "REDBONE_CONNECTION_STRING": "MYSQL_CONNECTION_STRING_HERE",
+        "REDBONE_ADMIN_HASH": "PASSWORD_HASH_HERE"
+      }
+    }
+  }
+}
