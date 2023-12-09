@@ -34,13 +34,16 @@ public class PanelController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Index(string password)
     {
+        ViewBag.Message = GenerateHash(password);
+        return View();
+
         string GenerateHash(string passwordToHash)
         {
             //16 Bytes 크기의 Salt를 생성하고 대입함.
             byte[] salt = RandomNumberGenerator.GetBytes(16);
 
             //pbkdf2를 사용해 20 Bytes 크기의 Hash를 생성하고 대입함.
-            var pbkdf2 = new Rfc2898DeriveBytes(passwordToHash, salt, 100000);
+            var pbkdf2 = new Rfc2898DeriveBytes(passwordToHash, salt, 100000, HashAlgorithmName.SHA512);
             byte[] hash = pbkdf2.GetBytes(20);
     
             //Salt와 Hash를 합쳐 대입함. (Salt 16 Bytes + Hash 20 Bytes = 36 Bytes)
@@ -51,9 +54,6 @@ public class PanelController : Controller
             //합쳐서 만든 Hash를 Base64로 변환해 String으로 반환함.
             return Convert.ToBase64String(hashBytes);
         }
-
-        ViewBag.Message = GenerateHash(password);
-        return View();
     }
     
     [HttpGet]

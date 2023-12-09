@@ -9,7 +9,7 @@
 
 @functions
 {
-    string GetTextFromHtmlString(string html)
+    static string GetTextFromHtmlString(string html)
     {
         var document = new HtmlDocument();
         document.LoadHtml(html);
@@ -22,7 +22,7 @@
         return builder.ToString().Replace("&nbsp;", string.Empty);
     }
 
-    string SkipString(string content)
+    static string SkipString(string content)
     {
         string shortenContent;
 
