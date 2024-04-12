@@ -24,9 +24,20 @@ body:not([data-theme="dark"]) {
     --primary-inverse: #FFF;
 }
 
+@font-face {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+* {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    --font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
 html {
     scroll-behavior: smooth;
+
     font-family: 'IBM Plex Sans KR', sans-serif;
+    --font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
 body {
@@ -39,6 +50,9 @@ body {
     --progress-color: var(--primary);
 
     --accordion-active-summary-color: var(--primary);
+
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    --font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
     body nav {
