@@ -23,7 +23,7 @@ public class SitemapController : Controller
     {
         var sitemap = new Sitemap();
         var posts = _sql.GetAllPosts();
-        var nodes = _configuration.GetSection("SitemapNodes").Get<string[]>();
+        string[] nodes = _configuration.GetSection("SitemapNodes").Get<string[]>();
         
         string host = Request.Scheme + "://" + Request.Host;
 
