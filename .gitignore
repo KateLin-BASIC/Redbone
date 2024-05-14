@@ -626,5 +626,6 @@ $RECYCLE.BIN/
 # Project specific settings
 launchSettings.json
 appsettings.Development.json
+Redbone/wwwroot/lib
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,rider,csharp,aspnetcore
