@@ -52,12 +52,12 @@ public class HomeController : Controller
     public IActionResult Post(int id)
     {
         _sql.IncreaseViewCountByPostId(id);
-        
+
         var post = _sql.GetPostById(id);
         
         if (post == null)
             return NotFound();
-
+        
         return View(post);
     }
     
