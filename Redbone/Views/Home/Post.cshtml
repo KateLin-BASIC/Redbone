@@ -6,7 +6,7 @@
 
 <hgroup data-aos="fade-in">
     <h1>@Model.Title</h1>
-    <small>@Model.Date.ToString("yyyy-MM-dd HH:mm") · @Model.Views</small> 
+    <small>@Model.Date.ToString("yyyy-MM-dd HH:mm") · @Model.Views.ToString("#,##0")</small> 
     
     @if (Context.Session.GetString("_isAuthed") == "true")
     {

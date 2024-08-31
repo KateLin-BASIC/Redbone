@@ -4,10 +4,11 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>disable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <LangVersion>11</LangVersion>
+        <LangVersion>12</LangVersion>
         <PackageId />
         <Version />
         <Authors />
+        <Company>Kate Lin</Company>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -16,7 +17,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="HtmlAgilityPack" Version="1.11.64" />
+      <PackageReference Include="HtmlAgilityPack" Version="1.11.65" />
       <PackageReference Include="LazyCache" Version="2.4.0" />
       <PackageReference Include="LazyCache.AspNetCore" Version="2.4.0" />
       <PackageReference Include="MySql.Data" Version="9.0.0" />

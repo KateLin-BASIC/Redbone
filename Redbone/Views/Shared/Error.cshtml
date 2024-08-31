@@ -1,19 +1,68 @@
 ﻿@model ErrorViewModel
 
 @{
-    ViewData["Title"] = "문제가 발생했습니다.";
+    ViewData["Title"] = "Error";
+    Layout = "_EmptyLayout";
 }
 
-<hgroup>
-    <h1>문제가 발생했습니다.</h1>
-    <h3>해당 페이지를 표시할 수 없습니다.</h3>
-</hgroup>
+<div style="display:flex; justify-content:center; align-items:center; height: 100vh;">
+    <div class="window" style="width: 380px">
+        <div class="title-bar">
+            <div class="title-bar-text">
+            <span style="height: 100%">
+                <img src="assets/img/windows-icon.png" alt="Windows" style="width: 16px; height: 16px; vertical-align:middle"/>
+                <text style="margin-top: auto; margin-bottom: auto; vertical-align: middle;">Explorer</text>
+            </span>
+            </div>
+            <div class="title-bar-controls">
+                <button onclick="location.href='/'" aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="window-body">
+            <div class="container" style="padding-top: 5px; display: grid; grid-template-columns: 0.35fr 1.9fr 0.9fr; gap: 0px 0px; grid-auto-flow: row; grid-template-areas: '. . .';">
+                <div><img src="assets/img/error_icon.png" alt="Error" style="float: left; margin-bottom: auto"/></div>
+                <div style="vertical-align: top">
+                    <p style="margin-top: 0">This program has performed an illegal operation and will be shut down.</p>
+                    <p>If the problem persists, contact the program vendor.</p>
+                </div>
+                <div>
+                    <button onclick="location.href='/'" style="float: right;">Close</button>
+                    <button disabled style="float: right; margin-top: 30px">Details>></button>
+                </div>
+            </div>
+            <div class="field-row-stacked" style="width: 100%; margin-top: 10px">
+            <textarea disabled type="text" rows="8" style="resize: none; padding: 5px; color: black; width: 100%; font-size: 12px;">
+EXPLORER caused an invalid page fault in module <unknown> at 0000:00000009.
+Registers:
+EAX=01dec6c0 CS=0177 EIP=00000009 EFLGS=00010286
+EBX=00ccfae4 SS=017f ESP=00ccfalc EBP=0lc7f00c
+ECX=08000000 DS=017f ESI=00000003 FS=3647
+EDX=00000008 ES=017f EDI=0lc7fb38 GS=0000
+Bytes at CS:EIP:
+@Model.RequestId
+Stack dump:
+00000000 00000000 00400000 00000024 00409280
+004153e4 00409258 00000000 000000f4 00000000
+00000000 0000001f 0059fdd8 004090f2 00000070
+0059fc18
+            </textarea>
+            </div>
+        </div>
+    </div>
+</div>
 
-@if (Model.ShowRequestId)
+@section Styles
 {
-    <p>
-        <strong>요청 ID:</strong> <code>@Model.RequestId</code>
-    </p>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/98.css@0.1.20/dist/98.min.css">
+    <style>
+        html {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            margin: 0;
+            background-color: #008080;
+        }
+    </style>
 }
-
-<a href="/">홈으로 돌아가기</a>
