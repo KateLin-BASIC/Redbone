@@ -5,15 +5,8 @@ using Redbone.Models;
 namespace Redbone.Controllers;
 
 [Route("/login")]
-public class LoginController : Controller
+public class LoginController(IConfiguration configuration) : Controller
 {
-    private readonly IConfiguration _configuration;
-
-    public LoginController(IConfiguration configuration)
-    {
-        _configuration = configuration;
-    }
-    
     [HttpGet]
     public IActionResult Index()
     {
@@ -27,7 +20,7 @@ public class LoginController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Index(LoginModel user)
     {
-        string name = _configuration.GetValue<string>("Administrator:Name"), 
+        string name = configuration.GetValue<string>("Administrator:Name"), 
             hash = Environment.GetEnvironmentVariable("REDBONE_ADMIN_HASH");
 
         if (ModelState.IsValid && user.Name == name && HashVerification(user.Password, hash))

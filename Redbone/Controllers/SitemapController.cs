@@ -7,23 +7,14 @@ using X.Web.Sitemap.Extensions;
 namespace Redbone.Controllers;
 
 [Route("/sitemap.xml")]
-public class SitemapController : Controller
+public class SitemapController(SqlService sql, IConfiguration configuration) : Controller
 {
-    private readonly SqlService _sql;
-    private readonly IConfiguration _configuration;
-
-    public SitemapController(SqlService sql, IConfiguration configuration)
-    {
-        _sql = sql;
-        _configuration = configuration;
-    }
-    
     [HttpGet]
     public IActionResult Index()
     {
         var sitemap = new Sitemap();
-        var posts = _sql.GetAllPosts();
-        string[] nodes = _configuration.GetSection("SitemapNodes").Get<string[]>();
+        var posts = sql.GetAllPosts();
+        string[] nodes = configuration.GetSection("SitemapNodes").Get<string[]>();
         
         string host = Request.Scheme + "://" + Request.Host;
 

@@ -1,7 +1,7 @@
+using Redbone.Services;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption;
 using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
-using Redbone.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

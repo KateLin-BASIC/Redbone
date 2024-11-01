@@ -7,27 +7,16 @@ using Activity = System.Diagnostics.Activity;
 
 namespace Redbone.Controllers;
 
-public class HomeController : Controller
+public class HomeController(SqlService sql, IAppCache cache, IConfiguration configuration) : Controller
 {
-    private readonly SqlService _sql;
-    private readonly IAppCache _cache;
-    private readonly IConfiguration _configuration;
-
-    public HomeController(SqlService sql, IAppCache cache, IConfiguration configuration)
-    {
-        _sql = sql;
-        _cache = cache;
-        _configuration = configuration;
-    }
-    
     [HttpGet]
     [Route("/")]
     public IActionResult Index()
     {
-        string username = _configuration.GetValue<string>("GithubAPI:UserName");
-        string applicationName = _configuration.GetValue<string>("GithubAPI:ApplicationName");
+        string username = configuration.GetValue<string>("GithubAPI:UserName");
+        string applicationName = configuration.GetValue<string>("GithubAPI:ApplicationName");
 
-        var posts = _sql.GetAllPosts().Reverse().Take(3);
+        var posts = sql.GetAllPosts().Reverse().Take(3);
         var client = new GitHubClient(new ProductHeaderValue(applicationName));
 
         List<Repository> RepositoryGetter()
@@ -42,7 +31,7 @@ public class HomeController : Controller
                 .ToList();
         }
 
-        var repositoryCache = _cache.GetOrAdd("HomeController.Get", RepositoryGetter);
+        var repositoryCache = cache.GetOrAdd("HomeController.Get", RepositoryGetter);
         
         return View(new HomeData { Posts = posts, Repositories = repositoryCache });
     }
@@ -51,9 +40,9 @@ public class HomeController : Controller
     [Route("/{id:int}")]
     public IActionResult Post(int id)
     {
-        _sql.IncreaseViewCountByPostId(id);
+        sql.IncreaseViewCountByPostId(id);
 
-        var post = _sql.GetPostById(id);
+        var post = sql.GetPostById(id);
         
         if (post == null)
             return NotFound();

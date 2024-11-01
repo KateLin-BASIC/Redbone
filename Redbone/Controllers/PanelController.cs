@@ -7,15 +7,8 @@ using Redbone.Services;
 namespace Redbone.Controllers;
 
 [Admin]
-public class PanelController : Controller
+public class PanelController(SqlService sql) : Controller
 {
-    private readonly SqlService _sql;
-
-    public PanelController(SqlService sql)
-    {
-        _sql = sql;
-    }
-    
     [HttpGet]
     [Route("/panel")]
     public IActionResult Index(bool logout, string lastUrl)
@@ -70,7 +63,7 @@ public class PanelController : Controller
     {
         if (ModelState.IsValid)
         {
-            int id = _sql.CreatePost(new Post
+            int id = sql.CreatePost(new Post
             {
                 Title = data.Title,
                 Content = data.Content,
@@ -88,7 +81,7 @@ public class PanelController : Controller
     [Route("/panel/edit/{postId:int}")]
     public IActionResult Edit(int postId)
     {
-        var post = _sql.GetPostById(postId);
+        var post = sql.GetPostById(postId);
         
         if (post == null)
             return Redirect("~/");
@@ -101,14 +94,14 @@ public class PanelController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Edit(int postId, WriteModel data)
     {
-        var post = _sql.GetPostById(postId);
+        var post = sql.GetPostById(postId);
         
         if (post == null)
             return Redirect("~/");
         
         if (ModelState.IsValid)
         {
-            _sql.UpdatePost(postId, new Post
+            sql.UpdatePost(postId, new Post
             {
                 Id = postId,
                 Title = data.Title,
@@ -128,14 +121,14 @@ public class PanelController : Controller
     [Route("/panel/delete/{postId:int}")]
     public IActionResult Delete(int postId, bool confirm)
     {
-        if (!_sql.IsPostExist(postId))
+        if (!sql.IsPostExist(postId))
             return NotFound();
         
         ViewBag.Id = postId;
 
         if (confirm)
         {
-            _sql.DeletePost(postId);
+            sql.DeletePost(postId);
             return Redirect("~/");
         }
         
