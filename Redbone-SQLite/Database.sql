@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS "post" (
+    "id"	INTEGER NOT NULL,
+    "view"	INTEGER NOT NULL DEFAULT 0,
+    "date"	INTEGER NOT NULL,
+    "title"	TEXT NOT NULL,
+    "content"	TEXT NOT NULL,
+    PRIMARY KEY("id" AUTOINCREMENT)
+);
+
+CREATE TABLE IF NOT EXISTS "image" (
+    "id"	INTEGER NOT NULL UNIQUE,
+    "location"	TEXT NOT NULL,
+    "date"	INTEGER NOT NULL DEFAULT (unixepoch()),
+    PRIMARY KEY("id" AUTOINCREMENT)
+);

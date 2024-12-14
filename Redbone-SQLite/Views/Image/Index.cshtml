@@ -1,0 +1,107 @@
+﻿@model IEnumerable<Image>;
+
+@{
+    ViewData["Title"] = "Upload";
+}
+
+<div data-aos="fade-in">
+    <hgroup>
+        <h2>이미지 업로드</h2>
+        <h3>이미지를 서버에 업로드합니다.</h3>
+    </hgroup>
+    
+    <article>
+        @using (Html.BeginForm("Index", "Image", FormMethod.Post, new { enctype="multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            
+            <label for="file">이미지 업로드하기
+                <input type="file" id="file" name="file" accept="image/*" required>
+            </label>
+            
+            <br/>
+            
+            <input type="submit" value="업로드" data-aos="fade-in"/>           
+        }
+        
+        @if (!string.IsNullOrWhiteSpace(ViewBag.ImageUrl))
+        {
+            <p>이미지가 다음 주소로 업로드되었습니다: <a href=@ViewBag.ImageUrl>@ViewBag.ImageUrl</a></p>
+        }
+    </article>
+</div>
+
+<div data-aos="fade-in">
+    <hgroup>
+        <h2>이미지 삭제</h2>
+        <h3>이미 업로드된 이미지를 삭제합니다.</h3>
+    </hgroup>
+    
+    <article style="overflow: auto">
+        @if (!Model.Any())
+        {
+            <p>업로드 된 이미지가 없습니다.</p>
+        }
+        else
+        {
+            <table role="grid">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">파일명</th>
+                    <th scope="col">업로드 일자</th>
+                </tr>
+                </thead>
+                
+                @foreach (var item in Model)
+                {
+                    <tbody>
+                    <tr>
+                        <th scope="row"><a href="/image/delete/@item.Id">@item.Id</a></th>
+                        <td><a href=@($"https://{Context.Request.Host}/images/{System.IO.Path.GetFileName(item.Location)}")>
+                            @System.IO.Path.GetFileName(item.Location)
+                        </a></td>
+                        <td>@DateTimeOffset.FromUnixTimeSeconds(item.Date).ToString("yyyy-MM-dd HH:mm")</td>
+                    </tr>
+                    </tbody>
+                }
+            </table>
+        }
+    </article>
+</div>
+
+@section PreloadScripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert@2.1.2/dist/sweetalert.min.js"></script>
+}
+
+@{
+    if (!string.IsNullOrWhiteSpace(ViewBag.Message))
+    {
+        <script>
+            swal({
+                title: "성공!",
+                text: "@Html.Raw(ViewBag.Message)",
+                icon: "success",
+                buttons: {
+                  cancel: "확인"
+                }
+            });
+        </script>
+    }
+}
+
+@{
+    if (!string.IsNullOrWhiteSpace(ViewBag.ErrorMessage))
+    {
+        <script>
+            swal({
+                title: "오류",
+                text: "@Html.Raw(ViewBag.ErrorMessage)",
+                icon: "error",
+                buttons: {
+                  cancel: "확인"
+                }
+            });
+        </script>
+    }
+}

@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>disable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <LangVersion>12</LangVersion>
+        <PackageId />
+        <Version />
+        <Authors />
+        <Company>Kate Lin</Company>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DebugSymbols>false</DebugSymbols>
+      <DebugType>none</DebugType>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="HtmlAgilityPack" Version="1.11.71" />
+      <PackageReference Include="LazyCache" Version="2.4.0" />
+      <PackageReference Include="LazyCache.AspNetCore" Version="2.4.0" />
+      <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.0" />
+      <PackageReference Include="MySql.Data" Version="9.1.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+      <PackageReference Include="Octokit" Version="13.0.1" />
+      <PackageReference Include="SqlKata" Version="2.4.0" />
+      <PackageReference Include="SqlKata.Execution" Version="2.4.0" />
+      <PackageReference Include="System.Data.SQLite" Version="1.0.119" />
+      <PackageReference Include="TinyMCE" Version="7.5.1" />
+      <PackageReference Include="xsitemap" Version="2.9.10" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\js\site.js" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="appsettings.Development.json" />
+      <None Include="appsettings.Development.json">
+        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      </None>
+      <Content Remove="appsettings.json" />
+      <None Include="appsettings.json">
+        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>
