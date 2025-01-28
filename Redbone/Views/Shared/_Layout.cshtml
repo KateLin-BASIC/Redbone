@@ -33,11 +33,7 @@
                 <li><a href="/recent"><i class="bi bi-sticky-fill"></i> 모든 글</a></li>
 
                 @{
-                    if (Context.Session.GetString("_isAuthed") != "true")
-                    {
-                        <li><a href="/login"><i class="bi bi-box-arrow-in-right"></i> 로그인</a></li>
-                    }
-                    else
+                    if (Context.Session.GetString("_isAuthed") == "true")
                     {
                         <li>
                             <details role="list" dir="rtl">
