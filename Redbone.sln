@@ -2,8 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redbone", "Redbone\Redbone.csproj", "{CD74CD9A-A2FA-4113-B9DF-8582B382D263}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redbone-SQLite", "Redbone-SQLite\Redbone-SQLite.csproj", "{D6409A83-F74F-4C56-AFF9-18CAB953DB81}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,9 +12,5 @@ Global
 		{CD74CD9A-A2FA-4113-B9DF-8582B382D263}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD74CD9A-A2FA-4113-B9DF-8582B382D263}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD74CD9A-A2FA-4113-B9DF-8582B382D263}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D6409A83-F74F-4C56-AFF9-18CAB953DB81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D6409A83-F74F-4C56-AFF9-18CAB953DB81}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D6409A83-F74F-4C56-AFF9-18CAB953DB81}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D6409A83-F74F-4C56-AFF9-18CAB953DB81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

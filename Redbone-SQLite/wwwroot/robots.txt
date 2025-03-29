@@ -1,9 +1,0 @@
-﻿User-agent: *
-
-Allow: /
-
-Disallow: /login
-Disallow: /panel
-Disallow: /recent
-
-Sitemap: https://katelin.xyz/sitemap.xml

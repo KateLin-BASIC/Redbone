@@ -627,7 +627,6 @@ $RECYCLE.BIN/
 launchSettings.json
 appsettings.Development.json
 Redbone/wwwroot/lib
-Redbone-SQLite/wwwroot/lib
 Data.db
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,rider,csharp,aspnetcore

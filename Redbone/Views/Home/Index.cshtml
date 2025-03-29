@@ -145,17 +145,16 @@
 @section Scripts {
     @if (DateTime.Now.Month is 12 or 1)
     {
-        <script src="https://cdn.jsdelivr.net/npm/magic-snowflakes@6.3.0/dist/snowflakes.min.js"></script>
-        
+        <script src="~/assets/js/snowflakes.min.js"></script>
+
         <script>
-            let sf = new Snowflakes({
-                color: "#ffffff",
+            var snowflakes = new Snowflakes({
+                color: '#ffffff',
                 count: 30
             });
         </script>
     }
 
-    <script src="https://cdn.jsdelivr.net/npm/typewriter-effect@2.21.0/dist/core.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.min.js"></script>
+    <script src="~/assets/js/typewriter.js"></script>
     <script src="~/assets/js/home.js"></script>
 }

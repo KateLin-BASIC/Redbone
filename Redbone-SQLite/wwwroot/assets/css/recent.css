@@ -1,9 +1,0 @@
-﻿body main.container > article > small {
-    display: block;
-    text-align: right;
-    color: #73828C;
-}
-
-a.outline:nth-child(1) {
-    margin-right: 10px
-}
